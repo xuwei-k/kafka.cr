@@ -1,5 +1,13 @@
 language: crystal
+before_install:
+  - curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+  - crenv install $CRYSTAL_VERSION
+  - crenv global $CRYSTAL_VERSION
+  - crenv rehash
 crystal:
   - latest
-  - nightly
 script: make test
+matrix:
+  include:
+  - CRYSTAL_VERSION: 0.11.1
+  - CRYSTAL_VERSION: 0.12.0
