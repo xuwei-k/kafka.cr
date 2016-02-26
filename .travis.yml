@@ -1,11 +1,13 @@
-language: crystal
+language: java
 before_install:
   - curl -L https://raw.github.com/pine613/crenv/master/install.sh | bash
+  - export PATH="$HOME/.crenv/bin:$PATH"
+  - eval "$(crenv init -)"
+  - exec $SHELL -l
+  - crenv -v
   - crenv install $CRYSTAL_VERSION
   - crenv global $CRYSTAL_VERSION
   - crenv rehash
-crystal:
-  - latest
 script: make test
 matrix:
   include:
